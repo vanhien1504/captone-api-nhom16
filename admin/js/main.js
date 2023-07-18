@@ -1,4 +1,104 @@
+//KHANG 
+//get element   
+const getID = function (id) {
+    return document.getElementById(id)
+}
+const getElement = function (id) {
+    return document.querySelector(id)
+}
 
+
+//create base variable 
+let productList = new ProductList()
+let cartList = new CartList()
+
+let iconSearch = getID('search__icon')
+let inputSearch = getID('search__input')
+
+
+
+//API function 
+//khang
+const getAPI = function () {
+    const promise = axios({
+        url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+        method: 'GET'
+    })
+    promise
+        .then(res => {
+            productList.arrPd = res.data
+            renderList('productContent')
+            let carousel = getID('productContent')
+            $(carousel).slick({
+                dots: true,
+                infinite: true,
+                speed: 1000,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1800,
+            });
+        })
+        .catch(err => console.log(err))
+}
+//khang
+const getAPIGrid = function () {
+    const promise = axios({
+        url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+        method: 'GET'
+    })
+    promise
+        .then(res => {
+            productList.arrPd = res.data
+            renderList('productContentGrid', 2)
+        })
+        .catch(err => console.log(err))
+}
+
+
+//Create Cart list 
+//Khang
+const createCartList = function () {
+    const promise = axios({
+        url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+        method: 'GET'
+    })
+    promise
+        .then(res => {
+            const dataTest = localStorage.getItem('LocalCartList')
+            if (!dataTest) {
+                res.data.forEach(value => {
+                    const cartItem = new CartItem(value.name, value.price*1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
+                    cartList.addCart(cartItem)
+                })
+                const data = JSON.stringify(cartList.arrCart)
+                localStorage.setItem('LocalCartList', data)
+            } else {
+                (console.log('da co data'))
+                let newLocal = []
+                res.data.forEach(value => {
+                    const cartItem = new CartItem(value.name, value.price*1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
+                    newLocal.push(cartItem)
+                })
+                let currentData = JSON.parse(dataTest)
+                //data cũ
+                // console.log(currentData);
+                //data mới chưa số lượng
+                // console.log(newLocal);
+
+                currentData.forEach(value => {
+                    for (let i = 0; i < newLocal.length; i++) {
+                        if (value.maSp === newLocal[i].maSp) {
+                            newLocal[i].soLuong = value.soLuong
+                        }
+                    }
+                })
+                const updateLocal = JSON.stringify(newLocal)
+                localStorage.setItem('LocalCartList', updateLocal)
+            }
+        })
+        .catch(err => console.log(err))
+}
 
 // -------------------------------------//
 //Local function 
@@ -162,6 +262,52 @@ inputSearch.addEventListener('keyup', () => {
 
 })
 
+
+//Cart edit function
+//Khang
+const changeSl = function (maSp) {
+    for (var i = 0; i < cartList.arrCart.length; i++) {
+        if (cartList.arrCart[i].maSp == maSp) {
+            cartList.arrCart[i].soLuong = getID(maSp).value
+            break
+        }
+    }
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('itemCount').innerHTML = cartList.totalItems()
+    updateLocal()
+    renderCart()
+    getID('thanhtoan__status').style.display ='none'
+
+}
+
+const addSl = function (maSp) {
+    cartList.arrCart = getLocalCart()
+    for (var i = 0; i < cartList.arrCart.length; i++) {
+        if (cartList.arrCart[i].maSp == maSp) {
+            cartList.arrCart[i].soLuong = (cartList.arrCart[i].soLuong * 1 + 1)
+            break
+        }
+    }
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('itemCount').innerHTML = cartList.totalItems()
+    updateLocal()
+    renderCart()
+    getID('thanhtoan__status').style.display ='none'
+    getID('close__btn').click()
+}
+
+
+getID('thanhtoan__btn').onclick = function () {
+    cartList.arrCart.forEach(value => {
+        value.soLuong = 0
+    })
+    updateLocal()
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('itemCount').innerHTML = cartList.totalItems()
+    renderCart()
+    getID('thanhtoan__status').style.display ='inline-block'
+    getID('thanhtoan__status').innerHTML = 'Cảm ơn đã tin tưởng dịch vụ của chúng tôi!'
+}
 
 
 
