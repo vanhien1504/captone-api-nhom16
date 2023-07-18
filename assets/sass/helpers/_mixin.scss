@@ -1,0 +1,8 @@
+@mixin formStyle($p,$br,$m){
+    padding: $p;
+    margin: $m;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: $br;
+    // color: $color;
+}

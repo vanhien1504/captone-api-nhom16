@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   background-color: #F5F5F7;
+}
+
+
+.container{
+  width: 80%;
+  margin: auto;
+}
+
+.container-fluid{
+    width: 100%;
+    padding: 0;
+}
+
+.container__big{
+  width: 85%;
+  margin: auto;
+}
