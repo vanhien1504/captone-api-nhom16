@@ -1,8 +1,8 @@
 
 
-
+// -------------------------------------//
 //Local function 
-
+// hiển
 const getLocalCart = function () {
     const data2 = localStorage.getItem('LocalCartList')
     const parseData = JSON.parse(data2)
@@ -19,9 +19,9 @@ const updateLocal = function () {
     localStorage.setItem('LocalCartList', data)
 }
 
-
+// --------------------------------------//
 //Render function 
-
+// hiển
 const renderList = function (id, renderType = 1) {
     let contentHtml = ''
     productList.arrPd.forEach((value) => {
