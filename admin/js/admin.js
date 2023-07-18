@@ -1,3 +1,5 @@
+// ---------------------------//
+// hiển
 // get API data
 function getAPI() {
     var promise = axios({
@@ -9,7 +11,8 @@ function getAPI() {
         renderListTable()
     })
 }
-
+// ---------------------------- //
+// hiển
 // function render 
 
 function renderListTable() {
@@ -36,6 +39,7 @@ function renderListTable() {
     }
     getID('admin__tablebody').innerHTML = contentHtml
 }
+// --------------------//
 // API function 
 
 function getProductInfo() {
