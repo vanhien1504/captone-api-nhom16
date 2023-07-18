@@ -219,6 +219,7 @@ const renderCart = function () {
             contentHtml += `
         <tr>
             <td>${value.name}</td>
+            
             <td>$ ${value.price.toLocaleString({style:"currency", currency:"USD"})}</td>
             <td>  <input type="number" value="${value.soLuong}" id="${value.maSp}" onchange ="changeSl('${value.maSp}')" ></td>
         </tr>
