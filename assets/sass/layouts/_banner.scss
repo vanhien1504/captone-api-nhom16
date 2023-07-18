@@ -1,10 +1,16 @@
 .img__banner {
+    position: relative;
     height: 600px;
     overflow: hidden;
     margin-bottom: 50px;
 
     img {
         width: 100%;
+    }
+    #img1 {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     #img2 {
