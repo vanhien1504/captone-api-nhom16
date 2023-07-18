@@ -82,7 +82,56 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="product__modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content product__modal">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="close__btn"></button>
+                </div>
+                <div class="modal-body" id="product__modal__content">
+                    <!-- render bằng JS  -->
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+
+    <!-- Search modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true"
+        itemid="testmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="searchModal__title">
+                    <h1 class="modal-title white-modal">Tìm kiếm sản phẩm</h1>
+                </div>
+                <div class="modal-body" id="modalSearch__content">
+                    <div class="search__input">
+                        <input type="text" placeholder="Nhập tên sản phẩm cần tìm" id="search__input" value="">
+                    </div>
+                    <div>
+                        <div class="container">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th id="head__search"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search__result">
+                                    <!-- render by JS  -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
 
 
 

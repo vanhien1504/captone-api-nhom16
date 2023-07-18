@@ -17,7 +17,146 @@
 </head>
 
 <body>
-    
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CyberPhone</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="./index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Admin Pages</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container__big">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            id="admin__modal">
+            Thêm sản phẩm
+        </button>
+
+        <table class="table table-bordered border-dark-subtle" id="admin__table">
+            <thead class="table-primary">
+                <tr>
+                    <th>Name</th>
+                    <th>Mã Sản phẩm</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Screen</th>
+                    <th>Back camera</th>
+                    <th>Front camera</th>
+                    <th>Image</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody id="admin__tablebody">
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+      <!-- ------Footer------ -->
+     
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Cyberphone Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="admin__modal__content">
+                    <div class="form__admin__panel">
+                        <form id="admin__form">
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Tên sản Phẩm" id="tenSp"><br>
+                                <p><span id="tbTen" class="thongbao"></span></p>
+                            </div>
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Mã sản Phẩm" id="maSp">
+                                <p><span id="tbMasp" class="thongbao"></span></p>
+                            </div>
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Loại điện thoại" id="typeSp">
+                                <p><span id="tbType" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element">
+                                <textarea id="descSp" rows="3" placeholder="Mô tả"></textarea>
+                                <p><span id="tbMota" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Màn hình" id="screenSp">
+                                <p><span id="tbScreen" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Camera sau" id="backCameraSp">
+                                <p><span id="tbCamsau" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Camera trước" id="frontCameraSp">
+                                <p><span id="tbCamtruoc" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element"></div>
+                            <input class="form__input" type="number" placeholder="Giá" id="priceSp">
+                            <p><span id="tbGia" class="thongbao"></span></p>
+
+                            <div class="form__element">
+                                <input class="form__input" type="text" placeholder="Link ảnh" id="imgSp">
+                                <p><span id="tbImg" class="thongbao"></span></p>
+                            </div>
+
+
+                            <div class="form__element"></div>
+                            <input class="form__input" type="text" placeholder="idSp" id="idSp" value="-1">
+                        </form>
+                    </div>
+                    <div class="img__sp">
+                        <img src="" alt="" id="imgSpan">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveProduct">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
