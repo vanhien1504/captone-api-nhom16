@@ -145,7 +145,7 @@ function editProduct() {
         getAPI()
         renderListTable()
     })
-        .catch(err => console.log('loi'))
+        .catch(err => console.log(err))
 }
 
 
@@ -196,28 +196,43 @@ const maSpTest = function () {
     if (maSpLength) {
         let maSpPattern = patternTest('maSp', 'tbMasp', maSpTestReg, '*Mã sản phẩm chỉ gồm chữ và số, không có kí tự đặc biệt và không có khoảng trống')
         if (maSpPattern) {
-            let promise = axios({
-                url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
-                method: 'GET',
-            })
-            promise.then(res => {
-                let maSpTestValue = getID('maSp').value
-                let trung = false
-                res.data.forEach(value => {
-                    if (value.maSp === maSpTestValue) {
-                        trung = true
-                    }
-                })
-                if (trung) {
-                    getID('tbMasp').style.display = 'inline-block'
-                    getID('tbMasp').innerHTML = 'Mã sản phẩm bị trùng. Vui lòng nhập mã khác'
-                    return false
-                } else {
-                    getID('tbMasp').style.display = 'none'
-                    return true
+            let maSpTestValue = getID('maSp').value
+            let trung = false
+            productList.arrPd.forEach(value => {
+                if (value.maSp === maSpTestValue) {
+                    trung = true
                 }
             })
-                .catch(err = console.log(err))
+            if (trung===true) {
+                getID('tbMasp').style.display = 'inline-block'
+                getID('tbMasp').innerHTML = 'Mã sản phẩm bị trùng. Vui lòng nhập mã khác'
+                return false
+            } else {
+                getID('tbMasp').style.display = 'none'
+                return true
+            }
+            // let promise = axios({
+            //     url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+            //     method: 'GET',
+            // })
+            // promise.then(res => {
+            //     let maSpTestValue = getID('maSp').value
+            //     let trung = false
+            //     res.data.forEach(value => {
+            //         if (value.maSp === maSpTestValue) {
+            //             trung = true
+            //         }
+            //     })
+            // if (trung) {
+            //     getID('tbMasp').style.display = 'inline-block'
+            //     getID('tbMasp').innerHTML = 'Mã sản phẩm bị trùng. Vui lòng nhập mã khác'
+            //     return false
+            // } else {
+            //     getID('tbMasp').style.display = 'none'
+            //     return true
+            // }
+            // })
+            //     .catch(err = console.log(err))
         } else return false
     } else return false
 }
@@ -289,6 +304,8 @@ getID('admin__modal').onclick = function () {
     getID('imgSpan').src = ''
 }
 getID('saveProduct').onclick = function () {
+    let testValidation = nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()
+    console.log(testValidation);
     if (nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()
     ) {
         if (getID('idSp').value === '-1') {
@@ -310,6 +327,7 @@ getID('tenSp').onblur = function () {
 //Ma san pham
 getID('maSp').onblur = function () {
     maSpTest()
+
 }
 //Loai san pham
 getID('typeSp').onblur = function () {
