@@ -34,7 +34,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="#danhMuc">Products</a>
+                                <a class="nav-link " aria-current="page" href="#danhMuc" id="link__danhMuc">Products</a>
                             </li>
                             <li class="nav-item position-relative">
                                 <a class="nav-link " href="#" data-bs-toggle="offcanvas"
@@ -168,7 +168,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasRightLabel">Giỏ hàng của bạn</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" id="cart__close"></button>
         </div>
         <div class="offcanvas-body">
             <div class="container">
@@ -195,14 +195,14 @@
                             </tr>
                         </tfoot>
                     </table>
+                
                     <div><span id="thanhtoan__status"></span></div>
                     <div class="button__line">
-                        <button class="btn btn-light">Close</button>
+                        <button class="btn btn-dark" data-bs-dismiss="offcanvas">Xem thêm sản phẩm</button>
                         <button class="btn btn-success btn__focus" id="thanhtoan__btn">Thanh toán</button>
+
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -263,20 +263,7 @@
 
 
 
-
-
-
-
-
-
-
-
     <!-- -------------------------------------- -->
-
-
-
-
-
 
 
     <!-- bootstraps -->
@@ -303,16 +290,6 @@
     <!-- <script src="./admin/js/main.js"></script> -->
     <script src="./admin/js/main.js"></script>
 
-
-    <!-- <script>
-        $(document).ready(function () {
-            $('.slick__test').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 3
-            });
-        });
-    </script> -->
 
 </body>
 

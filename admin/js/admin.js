@@ -196,7 +196,28 @@ const maSpTest = function () {
     if (maSpLength) {
         let maSpPattern = patternTest('maSp', 'tbMasp', maSpTestReg, '*Mã sản phẩm chỉ gồm chữ và số, không có kí tự đặc biệt và không có khoảng trống')
         if (maSpPattern) {
-            return true
+            let promise = axios({
+                url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+                method: 'GET',
+            })
+            promise.then(res => {
+                let maSpTestValue = getID('maSp').value
+                let trung = false
+                res.data.forEach(value => {
+                    if (value.maSp === maSpTestValue) {
+                        trung = true
+                    }
+                })
+                if (trung) {
+                    getID('tbMasp').style.display = 'inline-block'
+                    getID('tbMasp').innerHTML = 'Mã sản phẩm bị trùng. Vui lòng nhập mã khác'
+                    return false
+                } else {
+                    getID('tbMasp').style.display = 'none'
+                    return true
+                }
+            })
+                .catch(err = console.log(err))
         } else return false
     } else return false
 }
@@ -219,14 +240,39 @@ const priceTest = function () {
             getID('tbGia').style.display = 'inline-block'
             getID('tbGia').innerHTML = 'Giá phải là số hợp lệ'
             return false
-        }else return true
-    }else return false
+        } else return true
+    } else return false
 }
 
 
+const descTest = function () {
+    let descLength = lengthTest('descSp', 'tbMota', '*Mô tả của sản phẩm không được để trống')
+    if (descLength) {
+        return true
+    } else return false
+}
+
+const screenTest = function () {
+    let screenLenght = lengthTest('screenSp', 'tbScreen', '*Camera sau của sản phẩm không được để trống')
+    if (screenLenght) {
+        return true
+    } else return false
+}
 
 
+const backCameraTest = function () {
+    let bcLenght = lengthTest('backCameraSp', 'tbCamsau', '*Camera sau của sản phẩm không được để trống')
+    if (bcLenght) {
+        return true
+    } else return false
+}
 
+const frontCameraTest = function () {
+    let fcLenght = lengthTest('frontCameraSp', 'tbCamtruoc', '*Camera trước của sản phẩm không được để trống')
+    if (fcLenght) {
+        return true
+    } else return false
+}
 
 
 
@@ -243,9 +289,62 @@ getID('admin__modal').onclick = function () {
     getID('imgSpan').src = ''
 }
 getID('saveProduct').onclick = function () {
-    if (getID('idSp').value === '-1') {
-        addProduct()
-    } else {
-        editProduct()
+    if (nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()
+    ) {
+        if (getID('idSp').value === '-1') {
+            addProduct()
+        } else {
+            editProduct()
+        }
     }
+}
+
+
+//--------------------
+//runtime validation
+
+//ten
+getID('tenSp').onblur = function () {
+    nameTest();
+}
+//Ma san pham
+getID('maSp').onblur = function () {
+    maSpTest()
+}
+//Loai san pham
+getID('typeSp').onblur = function () {
+    typeTest()
+}
+//Mo ta san pham
+getID('descSp').onblur = function () {
+    descTest()
+}
+
+//Man hinh
+getID('screenSp').onblur = function () {
+    screenTest()
+}
+
+//Camera sau
+getID('backCameraSp').onblur = function () {
+    backCameraTest()
+}
+
+//Camera truoc
+getID('frontCameraSp').onblur = function () {
+    frontCameraTest()
+}
+
+//Gia san pham
+getID('priceSp').onblur = function () {
+    priceTest()
+}
+
+//Hinh san pham
+getID('imgSp').onblur = function () {
+    let hinhtest = lengthTest('imgSp', 'tbImg', '*Nhập link hình ảnh sản phẩm')
+    if (hinhtest) {
+        getID('imgSpan').src = getID('imgSp').value
+    }
+
 }

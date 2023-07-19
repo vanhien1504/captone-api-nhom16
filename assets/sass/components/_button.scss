@@ -1,4 +1,13 @@
-button{
+button {
     margin: 5px;
-    border-radius: 50px!important;
+    border-radius: 50px !important;
+}
+#btn__xemthem {
+    transition: 0.5s;
+    color: #fff !important;
+
+    a {
+        text-decoration: none!important;
+        color: white!important;
+    }
 }
