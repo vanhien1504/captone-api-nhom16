@@ -95,16 +95,19 @@ function addProduct() {
 }
 //khang
 function deleteProduct(id) {
-    var promise = axios({
+    let choice = confirm('Bạn có chắc chắn muốn xoá sản phẩm này không?')
+    if (choice===true){var promise = axios({
         url: `https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone/${id}`,
         method: 'DELETE',
     })
     promise.then((res) => {
         getAPI()
         renderListTable()
+        alert('Xoá sản phẩm thành công')
     })
     promise.catch((err) => console.log(err))
-}
+}}
+    
 
 //Hiển  
 function productInfoPopup(id) {
