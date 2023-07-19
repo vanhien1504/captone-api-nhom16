@@ -64,8 +64,9 @@
     margin: 10px;
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
     transition: 0.5s;
+
     &:hover {
-       transform: scale(1.05);
+        transform: scale(1.05);
     }
 
     .product__content {
@@ -78,6 +79,8 @@
 
             h1 {
                 font-size: 18px;
+                font-style: oblique;
+                font-weight: bolder;
             }
         }
 
@@ -89,7 +92,7 @@
         }
 
         .productDesc {
-            height: 100px;
+            height: 145px;
             text-align: center;
             width: 100%;
         }
@@ -97,6 +100,7 @@
         h2 {
             font-size: 15px;
         }
+
     }
 
 }

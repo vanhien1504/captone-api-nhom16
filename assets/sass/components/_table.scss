@@ -2,13 +2,22 @@
     
     th,td{
         vertical-align: middle;
+       
     }
     th{
         text-align: center;
+        font-size:25px;
+        font-weight: 900;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    td{
+        font-size: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
     
     img{
         max-height: 100px;
+        
     }
 
 }

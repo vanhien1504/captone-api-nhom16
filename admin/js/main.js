@@ -330,6 +330,3 @@ getID('showCart').onclick = function () {
     cartList.arrCart = getLocalCart()
     renderCart()
 }
-
-
-

@@ -98,6 +98,8 @@ a {
 }
 .product2 .product__content .product__title h1 {
   font-size: 18px;
+  font-style: oblique;
+  font-weight: bolder;
 }
 .product2 .product__content img {
   width: 70%;
@@ -106,7 +108,7 @@ a {
   margin-bottom: 10px;
 }
 .product2 .product__content .productDesc {
-  height: 100px;
+  height: 145px;
   text-align: center;
   width: 100%;
 }
@@ -177,6 +179,13 @@ form select {
 }
 #admin__table th {
   text-align: center;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#admin__table td {
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 #admin__table img {
   max-height: 100px;
@@ -337,7 +346,8 @@ header .navbar .nav-item {
   margin: 0 12px;
 }
 header .navbar .nav-item a {
-  font-size: 16px;
+  font-size: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 header #navbarNav {
   flex-direction: row-reverse;
