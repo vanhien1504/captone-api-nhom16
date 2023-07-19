@@ -304,7 +304,7 @@ getID('thanhtoan__btn').onclick = function () {
         getID('thanhtoan__status').innerHTML = 'Giỏ hàng của bạn hiện chưa có sản phẩm.'
     } else {
         cartList.arrCart.forEach(value => {
-            value.soLuong = 0
+            value.soLuong = addSl()
         })
         updateLocal()
         getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
