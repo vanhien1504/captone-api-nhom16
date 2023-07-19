@@ -23,6 +23,10 @@ body {
   margin: auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 .product1 {
   display: inline-block;
   border-radius: 15px;
@@ -177,6 +181,15 @@ form select {
 button {
   margin: 5px;
   border-radius: 50px !important;
+}
+
+#btn__xemthem {
+  transition: 0.5s;
+  color: #fff !important;
+}
+#btn__xemthem a {
+  text-decoration: none !important;
+  color: white !important;
 }
 
 #admin__modal__content {
@@ -338,12 +351,18 @@ header .nav-item .badge {
 }
 
 .img__banner {
+  position: relative;
   height: 600px;
   overflow: hidden;
   margin-bottom: 50px;
 }
 .img__banner img {
   width: 100%;
+}
+.img__banner #img1 {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .img__banner #img2 {
   width: 100%;

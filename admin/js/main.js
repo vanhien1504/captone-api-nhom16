@@ -68,7 +68,7 @@ const createCartList = function () {
             const dataTest = localStorage.getItem('LocalCartList')
             if (!dataTest) {
                 res.data.forEach(value => {
-                    const cartItem = new CartItem(value.name, value.price*1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
+                    const cartItem = new CartItem(value.name, value.price * 1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
                     cartList.addCart(cartItem)
                 })
                 const data = JSON.stringify(cartList.arrCart)
@@ -77,7 +77,7 @@ const createCartList = function () {
                 (console.log('da co data'))
                 let newLocal = []
                 res.data.forEach(value => {
-                    const cartItem = new CartItem(value.name, value.price*1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
+                    const cartItem = new CartItem(value.name, value.price * 1, value.img, 0, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp);
                     newLocal.push(cartItem)
                 })
                 let currentData = JSON.parse(dataTest)
@@ -108,7 +108,7 @@ const getLocalCart = function () {
     const parseData = JSON.parse(data2)
     const arrParse = []
     parseData.forEach(value => {
-        const cartItem = new CartItem(value.name, value.price*1, value.img, value.soLuong, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp)
+        const cartItem = new CartItem(value.name, value.price * 1, value.img, value.soLuong, value.screen, value.backCamera, value.frontCamera, value.desc, value.id, value.maSp)
         arrParse.push(cartItem)
     })
     return arrParse
@@ -220,14 +220,14 @@ const renderCart = function () {
         <tr>
             <td>${value.name}</td>
             
-            <td>$ ${value.price.toLocaleString({style:"currency", currency:"USD"})}</td>
+            <td>$ ${value.price.toLocaleString({ style: "currency", currency: "USD" })}</td>
             <td>  <input type="number" value="${value.soLuong}" id="${value.maSp}" onchange ="changeSl('${value.maSp}')" ></td>
         </tr>
         `}
     })
-    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
     getID('cartContent').innerHTML = contentHtml
-    getID('thanhtoan__status').style.display ='none'
+    getID('thanhtoan__status').style.display = 'none'
 }
 
 
@@ -273,11 +273,11 @@ const changeSl = function (maSp) {
             break
         }
     }
-    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
     getID('itemCount').innerHTML = cartList.totalItems()
     updateLocal()
     renderCart()
-    getID('thanhtoan__status').style.display ='none'
+    getID('thanhtoan__status').style.display = 'none'
 
 }
 
@@ -289,29 +289,32 @@ const addSl = function (maSp) {
             break
         }
     }
-    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
     getID('itemCount').innerHTML = cartList.totalItems()
     updateLocal()
     renderCart()
-    getID('thanhtoan__status').style.display ='none'
+    getID('thanhtoan__status').style.display = 'none'
     getID('close__btn').click()
 }
 
 
 getID('thanhtoan__btn').onclick = function () {
-    cartList.arrCart.forEach(value => {
-        value.soLuong = 0
-    })
-    updateLocal()
-    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({style:"currency", currency:"USD"})}`
-    getID('itemCount').innerHTML = cartList.totalItems()
-    renderCart()
-    getID('thanhtoan__status').style.display ='inline-block'
-    getID('thanhtoan__status').innerHTML = 'Cảm ơn đã tin tưởng dịch vụ của chúng tôi!'
+    if (cartList.totalMoney() == 0) {
+        getID('thanhtoan__status').style.display = 'inline-block'
+        getID('thanhtoan__status').innerHTML = 'Giỏ hàng của bạn hiện chưa có sản phẩm.'
+    } else {
+        cartList.arrCart.forEach(value => {
+            value.soLuong = 0
+        })
+        updateLocal()
+        getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
+        getID('itemCount').innerHTML = cartList.totalItems()
+        renderCart()
+        getID('thanhtoan__status').style.display = 'inline-block'
+        getID('thanhtoan__status').innerHTML = 'Cảm ơn đã tin tưởng dịch vụ của chúng tôi!'
+    }
+
 }
-
-
-
 
 
 
@@ -327,12 +330,6 @@ getID('showCart').onclick = function () {
     cartList.arrCart = getLocalCart()
     renderCart()
 }
-getID('purchase').onclick = function () {
-    cartList.arrCart.forEach(value => {
-        value.soLuong = 0
-    })
-    getID('infoTT').innerHTML = 'cam on da thanh toan'
-    updateLocal()
-}
+
 
 
