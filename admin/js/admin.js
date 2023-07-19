@@ -299,21 +299,21 @@ renderListTable()
 getID('admin__modal').onclick = function () {
     thongBao.forEach(value => value.style.display = 'none')
     getID('maSp').readOnly = false
-    getID('maSp').style.backgroundColor = 'none'
+    getID('maSp').style='background-color: none;'
     getID('admin__form').reset()
     getID('imgSpan').src = ''
 }
 getID('saveProduct').onclick = function () {
-    let testValidation = nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()
-    console.log(testValidation);
-    if (nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()
-    ) {
-        if (getID('idSp').value === '-1') {
+    if (getID('idSp').value === '-1') {
+        if (nameTest() && maSpTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()) {
             addProduct()
-        } else {
+        }
+    } else {
+        if (nameTest() && typeTest() && descTest() && screenTest() && backCameraTest() && frontCameraTest() && priceTest()) {
             editProduct()
         }
     }
+
 }
 
 
