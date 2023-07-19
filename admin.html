@@ -47,13 +47,25 @@
             </nav>
         </div>
     </header>
+
+
     <!-- modal -->
     <div class="container__big">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        <div class="modal__header">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
             id="admin__modal">
             Thêm sản phẩm
         </button>
+
+        <select name="sort" id="sortSP">
+            <option value="none">Sắp xếp theo thứ tự</option>
+            <option value="increase">Giá tăng dần</option>
+            <option value="decrease">Giá giảm dần</option>
+        </select>
+
+        </div>
+        
 
         <table class="table table-bordered border-dark-subtle" id="admin__table">
             <thead class="table-primary">

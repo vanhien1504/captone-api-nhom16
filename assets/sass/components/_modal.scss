@@ -125,3 +125,13 @@ margin-top: 6.75rem;
     }
 }
 
+
+.modal__header{
+    display: flex;
+    justify-content: space-between;
+    select{
+        padding:4px;
+        background-color: transparent;
+        border: 1px solid transparent;
+    }
+}

@@ -303,6 +303,16 @@ button {
   padding: 5px;
 }
 
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+}
+.modal__header select {
+  padding: 4px;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
 .slick-dots {
   padding-top: 30px;
   margin-bottom: 50px;

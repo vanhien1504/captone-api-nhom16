@@ -6,6 +6,7 @@ let thongBao = getElement('.thongbao')
 
 let iconSearch = getID('search__icon')
 let inputSearch = getID('search__input')
+let sortBtn = getID('sortSP')
 
 
 // get element 
@@ -27,16 +28,16 @@ function getAPI() {
     promise.then(function (result) {
         productList.arrPd = result.data
         renderListTable()
-    })
+    }).catch(err=>console.log(err))
 }
 // ---------------------------- //
 // hiển
 // function render 
 
-function renderListTable() {
+function renderListTable(array =productList.arrPd) {
     var contentHtml = ''
-    for (var i = 0; i < productList.arrPd.length; i++) {
-        var prd = productList.arrPd[i]
+    for (var i = 0; i < array.length; i++) {
+        var prd = array[i]
         contentHtml += `
         <tr>
             <td>${prd.name}</td>
@@ -330,6 +331,34 @@ inputSearch.addEventListener('keyup', () => {
     }
 
 })
+
+
+//----------Sort function--------------
+sortBtn.onchange = function(){
+    if(sortBtn.value ==='none'){
+        renderListTable()
+    }else if(sortBtn.value ==='increase'){
+        var promise = axios({
+            url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+            method: 'GET'
+        })
+        promise.then(function (res) {
+           let sortedArr =  res.data.sort((a,b)=>a.price -b.price)
+           renderListTable(sortedArr)
+        }).catch(err=>console.log(err))
+    }else if(sortBtn.value ==='decrease'){
+        var promise = axios({
+            url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
+            method: 'GET'
+        })
+        promise.then(function (res) {
+           let sortedArr =  res.data.sort((a,b)=>b.price -a.price)
+           renderListTable(sortedArr)
+        }).catch(err=>console.log(err))
+    }
+}
+
+
 
 
 
