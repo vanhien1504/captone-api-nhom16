@@ -37,10 +37,10 @@ function renderListTable() {
         contentHtml += `
         <tr>
             <td>${prd.name}</td>
-            <td>${prd.maSp}</td>
+            <td class="fw-bold text-center">${prd.maSp}</td>
             <td>${prd.type}</td>
             <td>${prd.desc}</td>
-            <td>${prd.price}</td>
+            <td>$${prd.price}</td>
             <td>${prd.screen}</td>
             <td>${prd.backCamera}</td>
             <td>${prd.frontCamera}</td>
@@ -88,6 +88,7 @@ function addProduct() {
         .then((res) => {
             getAPI()
             renderListTable()
+            alert('Thêm sản phẩm thành công')
         }
         )
         .catch((err) => console.log(err))
@@ -144,6 +145,8 @@ function editProduct() {
     promise.then(res => {
         getAPI()
         renderListTable()
+        alert('Sửa sản phẩm thành công')
+
     })
         .catch(err => console.log(err))
 }
@@ -203,7 +206,7 @@ const maSpTest = function () {
                     trung = true
                 }
             })
-            if (trung===true) {
+            if (trung === true) {
                 getID('tbMasp').style.display = 'inline-block'
                 getID('tbMasp').innerHTML = 'Mã sản phẩm bị trùng. Vui lòng nhập mã khác'
                 return false
@@ -238,13 +241,15 @@ const maSpTest = function () {
 }
 
 const typeTest = function () {
-    let typeLength = lengthTest('typeSp', 'tbType', '*Loại sản phẩm không được để trống')
-    if (typeLength) {
-        let typePattern = patternTest('tenSp', 'tbTen', nameTestReg, '*Loại sản phẩm chỉ gồm chữ và số, không có kí tự đặc biệt')
-        if (typePattern) {
-            return true
-        } else return false
-    } else return false
+    let typeTest = getID('typeSp').value
+    if (typeTest === 'none') {
+        getID('tbType').style.display = 'inline-block'
+        getID('tbType').innerHTML = 'Vui lòng chọn loại sản phẩm'
+        return false
+    }else {
+        getID('tbType').style.display = 'none'
+        return true
+    }
 }
 
 const priceTest = function () {
@@ -299,7 +304,7 @@ renderListTable()
 getID('admin__modal').onclick = function () {
     thongBao.forEach(value => value.style.display = 'none')
     getID('maSp').readOnly = false
-    getID('maSp').style='background-color: none;'
+    getID('maSp').style = 'background-color: none;'
     getID('admin__form').reset()
     getID('imgSpan').src = ''
 }
@@ -327,10 +332,9 @@ getID('tenSp').onblur = function () {
 //Ma san pham
 getID('maSp').onblur = function () {
     maSpTest()
-
 }
 //Loai san pham
-getID('typeSp').onblur = function () {
+getID('typeSp').onchange = function () {
     typeTest()
 }
 //Mo ta san pham

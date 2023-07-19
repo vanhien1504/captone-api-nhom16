@@ -168,6 +168,10 @@ form select {
   width: 85%;
 }
 
+#typeSp {
+  margin: 0;
+}
+
 #admin__table th, #admin__table td {
   vertical-align: middle;
 }
