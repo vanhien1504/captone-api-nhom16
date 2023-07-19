@@ -61,6 +61,13 @@ a {
   height: 100px;
   text-align: center;
   width: 100%;
+  overflow: hidden;
+}
+.product1 .product__content .productDesc p {
+  text-overflow: ellipsis;
+}
+.product1 .product__content .productDesc h2 {
+  font-size: 16px;
 }
 
 #productContent {
@@ -109,6 +116,8 @@ a {
   height: 100px;
   text-align: center;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product2 .product__content h2 {
   font-size: 15px;

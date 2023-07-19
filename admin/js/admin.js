@@ -4,6 +4,9 @@ let productList = new ProductList()
 let cartList = new CartList()
 let thongBao = getElement('.thongbao')
 
+let iconSearch = getID('search__icon')
+let inputSearch = getID('search__input')
+
 
 // get element 
 function getID(id) {
@@ -297,6 +300,36 @@ const frontCameraTest = function () {
     } else return false
 }
 
+//---------Search------
+//Hiển
+iconSearch.onclick = () => {
+    inputSearch.value = ''
+    getID('head__search').innerHTML = ''
+
+}
+
+inputSearch.addEventListener('keyup', () => {
+    let valueSearch = inputSearch.value.replace(/\s/g, '').toUpperCase()
+    let contentHtml = ''
+    for (let i = 0; i < productList.arrPd.length; i++) {
+        if (valueSearch === '') {
+            getID('search__result').innerHTML = ''
+            getID('head__search').innerHTML = ''
+        } else {
+            getID('head__search').innerHTML = 'Sản phẩm gợi ý'
+            let prd = productList.arrPd[i]
+            let prdName = prd.name.replace(/\s/g, '').toUpperCase()
+            if (prdName.indexOf(valueSearch) !== -1) {
+                contentHtml += `
+                <tr data-bs-toggle="modal" data-bs-target="#product__modal" onclick="renderProduct('${prd.maSp}')">
+                    <td>${prd.name}</td>
+                </tr>
+                `}
+        }
+        getID('search__result').innerHTML = contentHtml
+    }
+
+})
 
 
 

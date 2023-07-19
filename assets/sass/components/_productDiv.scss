@@ -36,6 +36,13 @@
             height: 100px;
             text-align: center;
             width: 100%;
+            overflow: hidden;
+            p  {
+                text-overflow: ellipsis;
+            }
+            h2{
+                font-size: 16px;
+            }
 
         }
     }
@@ -64,8 +71,9 @@
     margin: 10px;
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .08);
     transition: 0.5s;
+
     &:hover {
-       transform: scale(1.05);
+        transform: scale(1.05);
     }
 
     .product__content {
@@ -92,11 +100,16 @@
             height: 100px;
             text-align: center;
             width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+
         }
 
         h2 {
             font-size: 15px;
         }
     }
+
 
 }
