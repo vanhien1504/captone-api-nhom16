@@ -319,10 +319,11 @@ inputSearch.addEventListener('keyup', () => {
     let arrSearch = []
     for (let i = 0; i < productList.arrPd.length; i++) {
         if (valueSearch === '') {
+            renderListTable()
             getID('search__result').innerHTML = ''
             getID('head__search').innerHTML = ''
         } else {
-            getID('head__search').innerHTML = 'Sản phẩm gợi ý'
+            // getID('head__search').innerHTML = 'Sản phẩm gợi ý'
             let prd = productList.arrPd[i]
             let prdName = prd.name.replace(/\s/g, '').toUpperCase()
             if (prdName.indexOf(valueSearch) !== -1) {
