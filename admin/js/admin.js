@@ -28,13 +28,13 @@ function getAPI() {
     promise.then(function (result) {
         productList.arrPd = result.data
         renderListTable()
-    }).catch(err=>console.log(err))
+    }).catch(err => console.log(err))
 }
 // ---------------------------- //
 // hiển
 // function render 
 
-function renderListTable(array =productList.arrPd) {
+function renderListTable(array = productList.arrPd) {
     var contentHtml = ''
     for (var i = 0; i < array.length; i++) {
         var prd = array[i]
@@ -100,18 +100,20 @@ function addProduct() {
 //khang
 function deleteProduct(id) {
     let choice = confirm('Bạn có chắc chắn muốn xoá sản phẩm này không?')
-    if (choice===true){var promise = axios({
-        url: `https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone/${id}`,
-        method: 'DELETE',
-    })
-    promise.then((res) => {
-        getAPI()
-        renderListTable()
-        alert('Xoá sản phẩm thành công')
-    })
-    promise.catch((err) => console.log(err))
-}}
-    
+    if (choice === true) {
+        var promise = axios({
+            url: `https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone/${id}`,
+            method: 'DELETE',
+        })
+        promise.then((res) => {
+            getAPI()
+            renderListTable()
+            alert('Xoá sản phẩm thành công')
+        })
+        promise.catch((err) => console.log(err))
+    }
+}
+
 
 //Hiển  
 function productInfoPopup(id) {
@@ -247,13 +249,15 @@ const maSpTest = function () {
     } else return false
 }
 
+
+
 const typeTest = function () {
     let typeTest = getID('typeSp').value
     if (typeTest === 'none') {
         getID('tbType').style.display = 'inline-block'
         getID('tbType').innerHTML = 'Vui lòng chọn loại sản phẩm'
         return false
-    }else {
+    } else {
         getID('tbType').style.display = 'none'
         return true
     }
@@ -312,6 +316,7 @@ iconSearch.onclick = () => {
 inputSearch.addEventListener('keyup', () => {
     let valueSearch = inputSearch.value.replace(/\s/g, '').toUpperCase()
     let contentHtml = ''
+    let arrSearch = []
     for (let i = 0; i < productList.arrPd.length; i++) {
         if (valueSearch === '') {
             getID('search__result').innerHTML = ''
@@ -321,11 +326,14 @@ inputSearch.addEventListener('keyup', () => {
             let prd = productList.arrPd[i]
             let prdName = prd.name.replace(/\s/g, '').toUpperCase()
             if (prdName.indexOf(valueSearch) !== -1) {
-                contentHtml += `
-                <tr data-bs-toggle="modal" data-bs-target="#product__modal" onclick="renderProduct('${prd.maSp}')">
-                    <td>${prd.name}</td>
-                </tr>
-                `}
+                arrSearch.push(prd)
+                renderListTable(arrSearch)
+                // contentHtml += `
+                // <tr data-bs-toggle="modal" data-bs-target="#product__modal" onclick="renderListTable(arrSearch)">
+                //     <td>${prd.name}</td>
+                // </tr>
+                // `
+            }
         }
         getID('search__result').innerHTML = contentHtml
     }
@@ -334,27 +342,27 @@ inputSearch.addEventListener('keyup', () => {
 
 
 //----------Sort function--------------
-sortBtn.onchange = function(){
-    if(sortBtn.value ==='none'){
+sortBtn.onchange = function () {
+    if (sortBtn.value === 'none') {
         renderListTable()
-    }else if(sortBtn.value ==='increase'){
+    } else if (sortBtn.value === 'increase') {
         var promise = axios({
             url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
             method: 'GET'
         })
         promise.then(function (res) {
-           let sortedArr =  res.data.sort((a,b)=>a.price -b.price)
-           renderListTable(sortedArr)
-        }).catch(err=>console.log(err))
-    }else if(sortBtn.value ==='decrease'){
+            let sortedArr = res.data.sort((a, b) => a.price - b.price)
+            renderListTable(sortedArr)
+        }).catch(err => console.log(err))
+    } else if (sortBtn.value === 'decrease') {
         var promise = axios({
             url: 'https://649a71a1bf7c145d0238d81a.mockapi.io/CyberPhone',
             method: 'GET'
         })
         promise.then(function (res) {
-           let sortedArr =  res.data.sort((a,b)=>b.price -a.price)
-           renderListTable(sortedArr)
-        }).catch(err=>console.log(err))
+            let sortedArr = res.data.sort((a, b) => b.price - a.price)
+            renderListTable(sortedArr)
+        }).catch(err => console.log(err))
     }
 }
 
@@ -369,7 +377,7 @@ renderListTable()
 getID('admin__modal').onclick = function () {
     thongBao.forEach(value => value.style.display = 'none')
     getID('maSp').readOnly = false
-    getID('maSp').style='background-color: none;'
+    getID('maSp').style = 'background-color: none;'
     getID('admin__form').reset()
     getID('imgSpan').src = ''
 }
@@ -396,7 +404,10 @@ getID('tenSp').onblur = function () {
 }
 //Ma san pham
 getID('maSp').onblur = function () {
-    maSpTest()
+    if (getID('maSp').readOnly !== true) {
+        console.log('hello');
+        maSpTest()
+    }
 }
 //Loai san pham
 getID('typeSp').onchange = function () {
