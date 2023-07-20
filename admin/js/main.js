@@ -163,7 +163,7 @@ const selectRender = function (id, renderType) {
                         <h1>${value.name}</h1>
                     </div>    
                     <img src="${value.img}"
-                    alt="">
+                    alt="" data-bs-toggle="modal" data-bs-target="#product__modal" onclick="renderProduct('${value.maSp}')">
                     <div class="productDesc">
                         <h2>Giá: $${value.price}</h2>
                         <p>${value.desc}</p>
