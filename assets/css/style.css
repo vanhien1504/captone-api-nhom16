@@ -205,6 +205,11 @@ button {
   color: white !important;
 }
 
+.del__btn {
+  font-size: 12px;
+  padding: 2px 5px;
+}
+
 #admin__modal__content {
   display: flex;
   flex-direction: row;

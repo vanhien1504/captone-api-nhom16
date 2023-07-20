@@ -219,9 +219,10 @@ const renderCart = function () {
             contentHtml += `
         <tr>
             <td>${value.name}</td>
-            
             <td>$ ${value.price.toLocaleString({ style: "currency", currency: "USD" })}</td>
             <td>  <input type="number" value="${value.soLuong}" id="${value.maSp}" onchange ="changeSl('${value.maSp}')" ></td>
+            <td><button class="btn btn-danger del__btn" onclick ="removeSl('${value.maSp}')"><i class="fa-solid fa-trash"></i></button></td>
+
         </tr>
         `}
     })
@@ -270,6 +271,21 @@ const changeSl = function (maSp) {
     for (var i = 0; i < cartList.arrCart.length; i++) {
         if (cartList.arrCart[i].maSp == maSp) {
             cartList.arrCart[i].soLuong = getID(maSp).value
+            break
+        }
+    }
+    getID('totalMoney').innerHTML = `$ ${cartList.totalMoney().toLocaleString({ style: "currency", currency: "USD" })}`
+    getID('itemCount').innerHTML = cartList.totalItems()
+    updateLocal()
+    renderCart()
+    getID('thanhtoan__status').style.display = 'none'
+
+}
+
+const removeSl = function (maSp) {
+    for (var i = 0; i < cartList.arrCart.length; i++) {
+        if (cartList.arrCart[i].maSp == maSp) {
+            cartList.arrCart[i].soLuong = 0
             break
         }
     }
